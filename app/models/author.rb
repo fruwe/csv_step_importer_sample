@@ -12,6 +12,9 @@
 # PROCESSORS = [Author::ImportableModel]
 # CSVStepImporter::Loader.new(path: CSV_PATH, processor_classes: PROCESSORS).save
 class Author < ApplicationRecord
+  has_many :book_authors, inverse_of: :author
+  has_many :books, through: :book_authors
+
   class ImportableModel < CSVStepImporter::Model::ImportableModel
     def model_class
       Module.nesting[1]
@@ -33,23 +36,8 @@ class Author < ApplicationRecord
       CSVStepImporter::Model::Reflector
     end
 
-    def finder_keys
+    def composite_key_columns
       [:name]
-    end
-
-    # def on_duplicate_key_ignore
-    #   # true
-    #   false
-    # end
-
-    # Skip an author who appear more than once in the CSV
-    def build_daos_for_row(row)
-      cache[:unique_authors] ||= []
-
-      unless cache[:unique_authors].include?(row.attributes[:author])
-        cache[:unique_authors] << row.attributes[:author]
-        dao_class.new parent: dao_node, row: row
-      end
     end
   end
 

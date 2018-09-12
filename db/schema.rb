@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180912081933) do
+ActiveRecord::Schema.define(version: 2018_09_12_081933) do
 
-  create_table "authors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "authors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "email"
     t.datetime "created_at", null: false
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20180912081933) do
     t.index ["name"], name: "index_authors_on_name", unique: true
   end
 
-  create_table "book_authors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "book_authors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "book_id", null: false
     t.bigint "author_id", null: false
     t.datetime "created_at", null: false
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20180912081933) do
     t.index ["book_id"], name: "index_book_authors_on_book_id"
   end
 
-  create_table "books", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "isbn", null: false
     t.string "title", null: false
     t.datetime "created_at", null: false

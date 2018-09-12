@@ -12,7 +12,8 @@
 # PROCESSORS = [Book::ImportableModel]
 # CSVStepImporter::Loader.new(path: CSV_PATH, processor_classes: PROCESSORS).save
 class Book < ApplicationRecord
-  belongs_to :author
+  has_many :book_authors, inverse_of: :book
+  has_many :authors, through: :book_authors
 
   class ImportableModel < CSVStepImporter::Model::ImportableModel
     def model_class
@@ -31,18 +32,8 @@ class Book < ApplicationRecord
       CSVStepImporter::Model::Reflector
     end
 
-    def finder_keys
+    def composite_key_columns
       [:isbn]
-    end
-
-    # Skip a book which appear more than once in the CSV
-    def build_daos_for_row(row)
-      cache[:uniq_books] ||= []
-
-      unless cache[:uniq_books].include?(row.attributes[:isbn])
-        cache[:uniq_books] << row.attributes[:isbn]
-        dao_class.new parent: dao_node, row: row
-      end
     end
   end
 end

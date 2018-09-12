@@ -13,6 +13,9 @@
 # CSVStepImporter::Loader.new(path: CSV_PATH, processor_classes: PROCESSORS).save
 
 class BookAuthor < ApplicationRecord
+  belongs_to :author, inverse_of: :book_authors
+  belongs_to :book, inverse_of: :book_authors
+
   class ImportableModel < CSVStepImporter::Model::ImportableModel
     def model_class
       Module.nesting[1]
@@ -31,13 +34,13 @@ class BookAuthor < ApplicationRecord
     end
   end
 
-  class DAO
+  class DAO < CSVStepImporter::Model::DAO
     def author_id
-      row.cache[Author::ImportableModel.cache_key].id
+      dao_for(model: Author::ImportableModel).id
     end
 
     def book_id
-      row.cache[Book::ImportableModel.cache_key].id
+      dao_for(model: Book::ImportableModel).id
     end
   end
 end

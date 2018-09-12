@@ -26,8 +26,12 @@ gem 'puma', '~> 3.7'
 # gem 'rack-cors'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'awesome_print'
+  gem 'pry-byebug'
+  gem 'pry-stack_explorer'
+  gem 'pry-doc'
+  gem 'pry-rails'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -36,3 +40,7 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# csv_step_importer
+gem 'csv_step_importer', path: '../csv_step_importer'
+gem 'smarter_csv', github: 'tilo/smarter_csv'

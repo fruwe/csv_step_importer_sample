@@ -8,3 +8,5 @@ This sample app shows how to use
 to import data from a single CSV file
 [spec/fixtures/files/books.csv](spec/fixtures/files/books.csv)
 into several DB tables, say `Author`, `Book` and `BookAuthor`.
+
+![ERD](db/erd.png)

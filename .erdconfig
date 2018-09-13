@@ -1,0 +1,7 @@
+attributes:
+- content
+- foreign_keys
+disconnected: false
+filename: db/erd
+filetype: png
+title: false

@@ -3,7 +3,7 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/eaac63e1df01e4f9dafd/test_coverage)](https://codeclimate.com/github/vochicong/csv_step_importer_sample/test_coverage)
 
 This sample app shows how to use
-[fruwe/csv_step_importer_sample](https://github.com/fruwe/csv_step_importer_sample)
+[fruwe/csv_step_importer](https://github.com/fruwe/csv_step_importer)
 :gem:
 to import data from a single CSV file
 [spec/fixtures/files/books.csv](spec/fixtures/files/books.csv)
